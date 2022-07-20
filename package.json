@@ -1,0 +1,35 @@
+{
+   "name": "skate_park",
+   "version": "1.0.0",
+   "description": "Desafio LATAM Modulo 08 Prueba - Skate Park",
+   "main": "app.js",
+   "scripts": {
+      "start": "node app.js",
+      "dev": "nodemon app.js"
+   },
+   "keywords": [
+      "HTML",
+      "CSS",
+      "Javascript",
+      "Node",
+      "Express",
+      "PostgreSQL",
+      "pg",
+      "dotenv",
+      "handlebars",
+      "API RESTful",
+      "HTTP",
+      "express-fileupload",
+      "jwt"
+   ],
+   "author": "Aframuz",
+   "license": "ISC",
+   "dependencies": {
+      "dotenv": "^16.0.1",
+      "express": "^4.18.1",
+      "express-fileupload": "^1.4.0",
+      "express-handlebars": "^6.0.6",
+      "jsonwebtoken": "^8.5.1",
+      "pg": "^8.7.3"
+   }
+}
