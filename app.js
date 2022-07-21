@@ -3,6 +3,7 @@
 =============================================*/
 // 3rd party modules
 const express = require("express")
+const exphbs = require("express-handlebars")
 // Local modules
 const skaterRoute = require("./routes/skater-route")
 // Core modules
@@ -22,12 +23,15 @@ app.use(express.static(path.join(__dirname, "public")))
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
+app.engine("hbs", exphbs.engine({ extname: "hbs" }))
+app.set("view engine", "hbs")
+
 /*=============================================
 =                   ROUTES                    =
 =============================================*/
 
 app.get("/", (req, res) => {
-   res.render("index")
+   res.render("home")
 })
 
 app.use("/skaters", skaterRoute)
