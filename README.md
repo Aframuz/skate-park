@@ -67,4 +67,13 @@ CREATE TABLE skaters (
 
 ## Notas
 
+-  db.config and models doesnt catch the errors, leaving the catching to controllers (maybe refactor later)
+
 ## TODO
+
+### API
+
+-  throw better errors
+-  refactor models to single function if possible
+-  skater validation
+-  hal?
