@@ -17,7 +17,7 @@ td,
 th {
    vertical-align: middle !important;
 }
-td div {
+td img {
    background-size: cover;
    width: 60px;
    height: 60px;

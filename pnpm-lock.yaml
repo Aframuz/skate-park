@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  bootstrap: ^5.2.0
   dotenv: ^16.0.1
   express: ^4.18.1
   express-fileupload: ^1.4.0
@@ -9,6 +10,7 @@ specifiers:
   pg: ^8.7.3
 
 dependencies:
+  bootstrap: 5.2.0
   dotenv: 16.0.1
   express: 4.18.1
   express-fileupload: 1.4.0
@@ -52,6 +54,12 @@ packages:
       unpipe: 1.0.0
     transitivePeerDependencies:
       - supports-color
+    dev: false
+
+  /bootstrap/5.2.0:
+    resolution: {integrity: sha512-qlnS9GL6YZE6Wnef46GxGv1UpGGzAwO0aPL1yOjzDIJpeApeMvqV24iL+pjr2kU4dduoBA9fINKWKgMToobx9A==}
+    peerDependencies:
+      '@popperjs/core': ^2.11.5
     dev: false
 
   /brace-expansion/2.0.1:

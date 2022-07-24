@@ -4,7 +4,7 @@
 // 3rd party modules
 const express = require("express")
 // Local modules
-const skaterCtrl = require("../controllers/skater-controller")
+const mainCtrl = require("../controllers/main-controller")
 
 /*=============================================
 =                    INIT                     =
@@ -15,8 +15,8 @@ const router = express.Router()
 /*=============================================
 =                   ROUTES                    =
 =============================================*/
-router.route("/skaters").get(skaterCtrl.getSkaters).post(skaterCtrl.addSkater)
-router.route("/skaters/:id").put(skaterCtrl.updateSkater).delete(skaterCtrl.deleteSkater)
+router.route("/").get(mainCtrl.renderHome)
+router.route("/:page").get(mainCtrl.renderPage)
 
 /*=============================================
 =                   EXPORTS                   =
