@@ -3,7 +3,8 @@
 =============================================*/
 // 3rd party modules
 const express = require("express")
-const exphbs = require("express-handlebars")
+const { create } = require("express-handlebars")
+const cookieParser = require("cookie-parser")
 // Local modules
 const mainRoute = require("./routes/main-route")
 const skaterRoute = require("./routes/skater-route")
@@ -22,10 +23,24 @@ const app = express()
 app.use(express.static(path.join(__dirname, "public")))
 app.use("/bootstrap", express.static(path.join(__dirname, "node_modules/bootstrap/dist")))
 
+app.use(cookieParser())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 
-app.engine("hbs", exphbs.engine({ extname: "hbs" }))
+const exphbs = create({
+   extname: ".hbs",
+   helpers: {
+      if_eq: function (a, b, opts) {
+         if (a == b) {
+            return opts.fn(this)
+         } else {
+            return opts.inverse(this)
+         }
+      },
+   },
+})
+
+app.engine("hbs", exphbs.engine)
 app.set("view engine", "hbs")
 
 /*=============================================

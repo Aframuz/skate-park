@@ -10,6 +10,9 @@
 
       {{! JS }}
       <script src="/bootstrap/js/bootstrap.min.js"></script>
+      {{#if_eq title "Home"}}
+         <script defer src="/js/home.js"></script>
+      {{/if_eq}}
       <script defer src="/js/main.js"></script>
 
       <title>{{title}}</title>

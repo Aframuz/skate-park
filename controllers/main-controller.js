@@ -1,16 +1,19 @@
 /*=============================================
 =              IMPORT MODULES                =
 =============================================*/
-// 3rd party modules
-const multer = require("multer")
 // Local modules
-const Skater = require("../models/skater")
+const Skater = require("../models/skater.js")
 
 /*=============================================
 =                  HANDLERS                   =
 =============================================*/
 const renderHome = (req, res) => {
-   res.render("home")
+   const newSkaterName = req.cookies.skater
+   res.clearCookie("skater", { httpOnly: true })
+   res.render("home", {
+      title: "Home",
+      newSkaterName,
+   })
 }
 
 const renderPage = (req, res) => {
@@ -25,25 +28,25 @@ const renderPage = (req, res) => {
    })
 }
 
-const addSkater = async (req, res) => {
+const registerSkater = async (req, res) => {
    const newSkaterData = res.locals.skater
-
    if (req.file) {
       newSkaterData.avatar = req.file.filename
    }
 
    try {
-      const newSkater = await Skater.insertOne(newSkaterData)
-      console.log(`New skater created: ${newSkater.nombre}`)
-      res.status(201).render("home", {
-         title: "Home",
-         newSkater,
-      })
+      const skaterAdded = await Skater.insertOne(newSkaterData)
+      res.cookie("skater", skaterAdded.nombre, { httpOnly: true })
+      res.status(201).redirect("/")
    } catch (err) {
-      console.log(err)
-      res.status(400).render("register", {
-         title: "Register",
-         errors: err.errors,
+      res.status(500).json({
+         error: {
+            statusCode: 500,
+            errorCode: "INTERNAL_SERVER_ERROR",
+            message: "Internal server error",
+            devMessage: `${err.message} with code ${err.code}`,
+            timestamp: new Date().toISOString(),
+         },
       })
    }
 }
@@ -54,5 +57,5 @@ const addSkater = async (req, res) => {
 module.exports = {
    renderHome,
    renderPage,
-   addSkater,
+   registerSkater,
 }

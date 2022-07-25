@@ -9,7 +9,7 @@ const client = require("../config/db.config")
 =============================================*/
 // Get
 const findAll = async () => {
-   const res = await client.query(`SELECT * FROM skaters`)
+   const res = await client.query(`SELECT id, email, nombre, anos_experiencia, especialidad, foto, estado FROM skaters`)
    return res.rows
 }
 

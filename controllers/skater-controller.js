@@ -3,6 +3,7 @@
 =============================================*/
 // Local modules
 const Skater = require("../models/skater.js")
+const filter = require("../utils/filter-api")
 /*=============================================
 =                  HANDLERS                   =
 =============================================*/
@@ -10,7 +11,8 @@ const Skater = require("../models/skater.js")
 const getSkaters = async (req, res) => {
    try {
       const skaters = await Skater.findAll()
-      res.status(200).json({ skaters })
+      const filteredSkaters = filter.byFields(skaters, req.query)
+      res.status(200).json({ skaters: filteredSkaters })
    } catch (err) {
       res.status(500).json({
          error: {
@@ -26,9 +28,14 @@ const getSkaters = async (req, res) => {
 
 // Inserting
 const addSkater = async (req, res) => {
-   const skaterToAdd = req.body
+   const newSkaterData = res.locals.skater
+
+   if (req.file) {
+      newSkaterData.avatar = req.file.filename
+   }
+
    try {
-      const skaterAdded = await Skater.insertOne(skaterToAdd)
+      const skaterAdded = await Skater.insertOne(newSkaterData)
       res.status(201).json({ skaterAdded })
    } catch (err) {
       res.status(500).json({
