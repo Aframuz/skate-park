@@ -1,40 +1,49 @@
+{{#if errors}}
+   {{> errors}}
+{{/if}}
 <section class="py-4">
    <h2>Registro</h2>
 
    <hr class="w-50 mx-auto" />
 
-   <form>
+   <form action="/register" method="POST" enctype="multipart/form-data">
       <div class="form-group row w-50 m-auto">
          <div class="form-group col-12 col-sm-6 my-2">
-            <label>Email</label>
-            <input class="form-control m-auto" />
+            <label for="email-register">Email</label>
+            <input id="email-register" class="form-control m-auto" name="email" type="email" required />
          </div>
          <div class="form-group col-12 col-sm-6 my-2">
-            <label>Nombre</label>
-            <input class="form-control m-auto" />
+            <label for="name-register">Nombre</label>
+            <input id="name-register" class="form-control m-auto" name="name" type="text" required />
          </div>
          <div class="form-group col-12 col-sm-6 my-2">
-            <label>Password</label>
-            <input class="form-control m-auto" />
+            <label for="pwd-register">Password</label>
+            <input id="pwd-register" class="form-control m-auto" name="password" type="password" required />
          </div>
          <div class="form-group col-12 col-sm-6 my-2">
-            <label>Repita la password</label>
-            <input class="form-control m-auto" />
+            <label for="pwd-repeat-register">Repita la password</label>
+            <input
+               id="pwd-repeat-register"
+               class="form-control m-auto"
+               name="confirmPassword"
+               type="password"
+               required
+            />
          </div>
          <div class="form-group col-12 col-sm-6 my-2">
-            <label>Años de experiencia</label>
-            <input class="form-control m-auto" />
+            <label for="exp-register">Años de experiencia</label>
+            <input id="exp-register" class="form-control m-auto" name="experience" type="number" required value="0" />
          </div>
          <div class="form-group col-12 col-sm-6 my-2">
-            <label>Especialidad</label>
-            <input class="form-control m-auto" />
+            <label for="specialty-register">Especialidad</label>
+            <input id="specialty-register" class="form-control m-auto" name="specialty" type="text" required />
          </div>
          <div class="form-group col-12 col-sm-12 my-4">
             <label class="d-block mb-2">Foto de perfil</label>
-            <input type="file" />
+            <input type="file" name="avatar" />
          </div>
       </div>
-      <button class="btn btn-info mb-3">Registrarme</button>
-      <p><a href="/login"> Iniciar sesión</a></p>
+      <input type="submit" class="btn btn-info mb-1" value="Registrarme" />
    </form>
+   <p><a href="/login"> Iniciar sesión</a></p>
 </section>
