@@ -11,7 +11,7 @@ const validateRegisterForm = (req, res, next) => {
 
    if (!name || name.length < 3) errors.push("El nombre debe ser a los menos de 3 caracteres")
    if (!email || !email.includes("@")) errors.push("Ingrese un email válido")
-   if (!password || password.length < 8) errors.push("Contraseña debe ser a los menos de 8 caracteres")
+   if (!password || password.length < 3) errors.push("Contraseña debe ser a los menos de 3 caracteres")
    if (!confirmPassword || confirmPassword !== password) errors.push("Contraseñas no coinciden")
 
    if (errors.length > 0) {

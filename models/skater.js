@@ -13,6 +13,17 @@ const findAll = async () => {
    return res.rows
 }
 
+// Get One
+const findOne = async (email) => {
+   const queryConf = {
+      text: "SELECT * FROM skaters WHERE email = $1",
+      values: [email],
+   }
+
+   const res = await client.query(queryConf)
+   return res.rows[0]
+}
+
 // Insert
 const insertOne = async (skaterObj) => {
    const queryConf = {
@@ -26,8 +37,17 @@ const insertOne = async (skaterObj) => {
 // Update
 const updateOne = async (skaterObj) => {
    const queryConf = {
-      text: "UPDATE skaters SET email = $2, nombre = $3, password = $4, anos_experiencia = $5, especialidad = $6, foto = $7, estado = $8 WHERE id = $1",
+      text: "UPDATE skaters SET email = $2, nombre = $3, password = $4, anos_experiencia = $5, especialidad = $6 WHERE id = $1",
       values: Object.values(skaterObj),
+   }
+
+   await client.query(queryConf)
+}
+
+const updateState = async (id, estado) => {
+   const queryConf = {
+      text: "UPDATE skaters SET estado = $2 WHERE id = $1",
+      values: [id, estado],
    }
 
    await client.query(queryConf)
@@ -48,7 +68,9 @@ const deleteOne = async (id) => {
 =============================================*/
 module.exports = {
    findAll,
+   findOne,
    insertOne,
    updateOne,
+   updateState,
    deleteOne,
 }

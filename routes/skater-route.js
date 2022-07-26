@@ -17,7 +17,11 @@ const router = express.Router()
 =                   ROUTES                    =
 =============================================*/
 router.route("/skaters").get(skaterCtrl.getSkaters).post(uploadAvatar, skaterCtrl.addSkater)
-router.route("/skaters/:id").put(skaterCtrl.updateSkater).delete(skaterCtrl.deleteSkater)
+router
+   .route("/skaters/:id")
+   .put(skaterCtrl.updateSkater)
+   .patch(skaterCtrl.updateSkaterState)
+   .delete(skaterCtrl.deleteSkater)
 /*=============================================
 =                   EXPORTS                   =
 =============================================*/

@@ -5,6 +5,7 @@
 const express = require("express")
 const { create } = require("express-handlebars")
 const cookieParser = require("cookie-parser")
+const dotenv = require("dotenv").config()
 // Local modules
 const mainRoute = require("./routes/main-route")
 const skaterRoute = require("./routes/skater-route")

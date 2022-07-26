@@ -11,8 +11,9 @@ const filter = require("../utils/filter-api")
 const getSkaters = async (req, res) => {
    try {
       const skaters = await Skater.findAll()
-      const filteredSkaters = filter.byFields(skaters, req.query)
-      res.status(200).json({ skaters: filteredSkaters })
+      const skatersByProperties = filter.byProperties(skaters, req.query)
+      const skatersByFields = filter.byFields(skatersByProperties, req.query)
+      res.status(200).json({ skaters: skatersByFields })
    } catch (err) {
       res.status(500).json({
          error: {
@@ -70,6 +71,25 @@ const updateSkater = async (req, res) => {
    }
 }
 
+const updateSkaterState = async (req, res) => {
+   const { id } = req.params
+   const { estado } = req.body
+   try {
+      await Skater.updateState(id, estado)
+      res.status(204).end()
+   } catch (err) {
+      res.status(500).json({
+         error: {
+            statusCode: 500,
+            errorCode: "INTERNAL_SERVER_ERROR",
+            message: "Internal server error",
+            devMessage: `${err.message} with code ${err.code}`,
+            timestamp: new Date().toISOString(),
+         },
+      })
+   }
+}
+
 // Deleting
 const deleteSkater = async (req, res) => {
    const { id } = req.params
@@ -96,5 +116,6 @@ module.exports = {
    getSkaters,
    addSkater,
    updateSkater,
+   updateSkaterState,
    deleteSkater,
 }

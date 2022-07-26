@@ -16,15 +16,29 @@ const renderHome = (req, res) => {
    })
 }
 
-const renderPage = (req, res) => {
-   const page = req.params.page
+const renderProfile = (req, res) => {
+   const { skater } = req.body
+   res.render("profile", {
+      title: "Profile",
+      skater,
+   })
+}
 
-   res.render(page, { title: page }, (err, html) => {
-      if (err)
-         res.render("404", {
-            title: "Not Found",
-         })
-      else res.send(html)
+const renderAdmin = (req, res) => {
+   res.render("admin", {
+      title: "Admin",
+   })
+}
+
+const renderLogin = (req, res) => {
+   res.render("login", {
+      title: "Login",
+   })
+}
+
+const renderRegister = (req, res) => {
+   res.render("register", {
+      title: "Register",
    })
 }
 
@@ -56,6 +70,9 @@ const registerSkater = async (req, res) => {
 =============================================*/
 module.exports = {
    renderHome,
-   renderPage,
+   renderProfile,
+   renderAdmin,
+   renderLogin,
+   renderRegister,
    registerSkater,
 }

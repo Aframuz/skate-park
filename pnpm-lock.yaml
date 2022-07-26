@@ -1,6 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
+  bcryptjs: ^2.4.3
   bootstrap: ^5.2.0
   cookie-parser: ^1.4.6
   dotenv: ^16.0.1
@@ -12,6 +13,7 @@ specifiers:
   pg: ^8.7.3
 
 dependencies:
+  bcryptjs: 2.4.3
   bootstrap: 5.2.0
   cookie-parser: 1.4.6
   dotenv: 16.0.1
@@ -42,6 +44,10 @@ packages:
 
   /balanced-match/1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
+    dev: false
+
+  /bcryptjs/2.4.3:
+    resolution: {integrity: sha512-V/Hy/X9Vt7f3BbPJEi8BdVFMByHi+jNXrYkW3huaybV/kQ0KJg0Y6PkEMbn+zeT+i+SiKZ/HMqJGIIt4LZDqNQ==}
     dev: false
 
   /body-parser/1.20.0:
